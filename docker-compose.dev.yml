@@ -1,19 +1,6 @@
 version: "3.9"
 
 services:
-  # web:
-  #   build:
-  #     context: ../Dog-Walking-PWA
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - 5173:5173
-  #   volumes:
-  #     - ../Dog-Walking-PWA/src:/app/src
-  #     - ../Dog-Walking-PWA/node_modules:/app/node_modules
-  #     - ../Dog-Walking-PWA/tsconfig.json:/app/tsconfig.json
-  #     - ../Dog-Walking-PWA/vite.config.ts:/app/vite.config.ts
-  #     - ../Dog-Walking-PWA/index.html:/app/index.html
-
   api:
     build:
       context: ../Dog-Walking-Service
@@ -36,7 +23,7 @@ services:
   db:
     image: postgres:14.8
     env_file:
-      - db/.env
+      - ./db/.env
     ports:
       - 52000:5432
     volumes:
@@ -45,4 +32,3 @@ services:
 
 volumes:
   Dog-Walking-App:
-    driver: local
