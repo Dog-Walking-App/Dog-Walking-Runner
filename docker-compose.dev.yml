@@ -38,6 +38,24 @@ services:
       - ../Dog-Walking-Service/src:/app/src
       - ../Dog-Walking-Service/app.py:/app/app.py
 
+  customers-service:
+    build:
+      context: ../customers-service
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8060:8060
+    depends_on:
+      - db
+    links:
+      - db
+    env_file:
+      - ../customers-service/.env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+    volumes:
+      - ../customers-service/src:/app/src
+
   db:
     image: postgres:14.8
     env_file:
